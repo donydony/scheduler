@@ -1,4 +1,4 @@
-const days = [
+export const days = [
   {
     id: 1,
     name: "Monday",
@@ -16,7 +16,7 @@ const days = [
   },
 ];
 
-const appointments = {
+export const appointments = {
   "1": {
     id: 1,
     time: "12pm",
@@ -54,5 +54,3 @@ const appointments = {
     time: "4pm",
   }
 };
-
-export default { days, appointments };
