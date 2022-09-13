@@ -11,7 +11,6 @@ export default function useVisualMode(initial) {
       setHistory([...history, trans]);
     }
     setValue(trans);
-    console.log('history: ', history, 'trans: ', trans)
   };
 
   const back = function () {
