@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
@@ -15,6 +15,7 @@ const CREATE = "CREATE";
 const SAVING = "STATUS";
 const CONFIRM = "CONFIRM";
 const DELETE = "DELETE";
+const EDIT = "EDIT";
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
@@ -42,6 +43,11 @@ export default function Appointment(props) {
     });
   };
 
+  const onEdit = function() {
+    console.log(props.interview.interviewer);
+    transition(EDIT);
+  };
+
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -50,7 +56,7 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onEdit={props.onEdit}
+          onEdit={onEdit}
           onDelete={onDelete}
         />
       )}
@@ -63,6 +69,15 @@ export default function Appointment(props) {
           onCancel={back}
           message={"Are you sure you would like to delete?"}
         />)}
+        {mode === EDIT && (
+        <Form
+          student={props.interview.student}
+          interviewers={props.interviewers}
+          interviewer={props.interview.interviewer.id}
+          onCancel={back} 
+          onSave={save}
+        />
+      )}
     </article>
   );
 };
