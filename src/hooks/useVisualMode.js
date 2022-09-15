@@ -8,7 +8,7 @@ export default function useVisualMode(initial) {
     if (replace) {
       setHistory(curr => [...curr.slice(0, curr.length - 1), trans]);
     } else {
-      setHistory([...history, trans]);
+      setHistory(prev => ([...prev, trans]));
     }
     setValue(trans);
   };
@@ -25,4 +25,4 @@ export default function useVisualMode(initial) {
     transition,
     back
   };
-}
+};
