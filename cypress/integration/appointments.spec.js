@@ -1,11 +1,11 @@
 describe("Appointments", () => {
   beforeEach(() => {
     cy.request("GET", "/api/debug/reset");
-  
+
     cy.visit("/");
-  
+
     cy.contains("Monday");
-   });
+  });
 
   it("should book an interview", () => {
     cy.get("[alt=Add]").first().click();
@@ -30,6 +30,11 @@ describe("Appointments", () => {
   it("should cancel an interview", () => {
     cy.get("[alt=Delete]").first().click({ force: true });
     cy.contains("Confirm").click();
+    cy.contains("Deleting").should("exist");
+    cy.contains("Deleting").should("not.exist");
+
+    cy.contains(".appointment__card--show", "Archie Cohen")
+      .should("not.exist");
     cy.contains("[data-testid=day]", "Monday").contains("2 spots remaining");
   });
 });
