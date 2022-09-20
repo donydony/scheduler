@@ -1,6 +1,10 @@
 # Interview Scheduler
 
-This is a simple webapp that allows users to easily book appointments with available interviewers of the day.
+This is a webapp that allows users to easily book appointments with available interviewers of the day.
+
+Users are able too add, edit, or cancel existing appointments. 
+
+The data is managed and stored by 'scheduler-api', which connects to a PostgresSQL database.
 
 ## Setup
 
