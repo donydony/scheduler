@@ -55,23 +55,15 @@ export default function useApplicationData() {
     };
 
     const days = [...state.days];
-    const dayIndex = days.findIndex(element => element.name === state.day);
-    const newSpots = state.days[dayIndex].spots++;
-    let day = {};
-    if (!state.appointments[id].interview) {
-      day = {
-        ...days[dayIndex],
-        spots: newSpots
-      };
-    } else {
-      day = {
-        ...days[dayIndex]
-      };
+    const dayIndex = state.days.findIndex(element => element.name === state.day);
+    let day = {
+      ...state.days[dayIndex],
+      spots: (state.days[dayIndex].spots + 1)
     }
     days[dayIndex] = day;
 
     return axios.delete(`/api/appointments/${id}`).then(() => {
-      setState(prev => ({ ...prev, days, appointments }));
+      setState({ ...state, days, appointments });
     });
   };
 
